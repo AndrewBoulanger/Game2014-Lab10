@@ -107,6 +107,23 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(collision.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(null);
+        }
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
