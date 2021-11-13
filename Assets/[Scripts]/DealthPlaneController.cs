@@ -21,5 +21,9 @@ public class DealthPlaneController : MonoBehaviour
             }
 
         }
+        else
+        {
+            collision.gameObject.SetActive(false);
+        }
     }
 }
