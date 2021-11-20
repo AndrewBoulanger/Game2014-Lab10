@@ -7,6 +7,8 @@ public class PlayerBehaviour : MonoBehaviour
 {
     [Header("Touch Input")]
     public Joystick joystick;
+    [Range(0.01f, 1f)]
+    public float sensitivity;
 
     [Header("Movement")]
     public float horizontalForce;
@@ -41,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal") + joystick.Horizontal;
+        float x = (Input.GetAxisRaw("Horizontal") + joystick.Horizontal) * sensitivity;
         if (x != 0)
         {
             FlipAnimation(x);
@@ -50,7 +52,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (isGrounded)
         {
 
-            float y = Input.GetAxisRaw("Vertical");
+            float y = (Input.GetAxisRaw("Vertical") + joystick.Vertical) * sensitivity;
             float jump = Input.GetAxisRaw("Jump") + ((UIController.jumpbuttonDown) ? 1.0f: 0.0f);
 
             //set animation state based on x input
